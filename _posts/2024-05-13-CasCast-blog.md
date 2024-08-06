@@ -302,12 +302,41 @@ The results of these comparative tests can be seen below.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/cascast_results_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/DataComSamples.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 <div class="caption">
     Comparative Results between multiple models using multiple datasets
 </div>
+
+### Deterministic Model Selection
+
+Multiple Deterministic models can be used as the first component of the CasCast architecture.
+To assess how well the cascaded strategy in CasCast works, it was tested on the SEVIR dataset.It was compared using just the probabilistic generation model with different deterministic models as shown the table and figure just below.
+
+The results were that using either the probabilistic or deterministic model alone led to problems like pixel mismatches or poor predictions of small-scale patterns and extreme regional values. 
+However results improved significantly when ConvLSTM, SimVP, and EarthFormer were used as the deterministic parts of CasCast, . The CSI-219-POOL16 metric shot up by 49.54%, 57.69%, and 91.83% with each of these models.
+This shows that the cascaded approach improves regional extreme-precipitation nowcasting.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/DeterministicPartSelection.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+<div class="caption">
+    Replacement of the deterministic part of CasCast on SEVIR dataset
+</div>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/DetermModelComparFigure.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+<div class="caption">
+    Frame-wise CSI-M (left) and CSI-219 (right) results when using different Deterministic Models
+</div>
+
+In short, a better deterministic model leads to better overall performance in cascaded modeling. This highlights the value of combining both probabilistic and deterministic models for more accurate predictions.
 
 ### Visual Comparisons
 

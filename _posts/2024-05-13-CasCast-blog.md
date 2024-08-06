@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CasCast
-date: 2024-05-14 00:32:13
+date: 2024-08-05 12:30:13
 description: A blog Describing Skillful High Resolution Precipitation Nowcasting via CasCaded Modeling
 tags: deep-learning weather-forecasting
 categories: blog-posts
@@ -63,6 +63,9 @@ This is an example of a High Resolution Radar Echo Image that can be used as inp
         {% include figure.liquid loading="eager" path="assets/img/radar_echo_input.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+<div class="caption">
+    Example of a High Resolution Radar Echo Image
+</div>
 
 The desired outputs are accurate precipitation maps of the affected areas, below is an example of a desired precipitation map. 
 
@@ -74,6 +77,10 @@ It is also important to note that the pink areas are the areas of extreme precip
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/output_sample_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
+</div>
+
+<div class="caption">
+    Output Precipitation Map from CasCast
 </div>
 
 ### Loss Function
@@ -124,10 +131,12 @@ By integrating both losses, the hybrid loss ensures that the model captures both
 
 In the paper 4 different scoring methods are used to compare the results from different models. These scoring methods are : Critical Success Index (CSI), Heidke Skill Score (HSS), Continuous Ranked Probability Score (CRPS) and Continuous Ranked Probability Score (CRPS).
 
-Some of these scoring methods are presented below.
+Some of these scoring methods can be viewed in detail below.
 
-#### Critical Success Index (CSI)
+<!-- #### Critical Success Index (CSI) -->
 
+{% details Critical Success Index (CSI) %}
+<br/>
 It measures the accuracy of binary event forecasts, particularly useful for precipitation where the event is the occurrence of rainfall above a certain threshold.
 
 $$
@@ -136,8 +145,13 @@ $$
 
 CSI Measures the accuracy of binary event forecasts, which is useful for precipitation where the event is the occurrence of rainfall above a certain threshold (precipitation above a particular intensity).
 
-#### Heidke Skill Score (HSS)
+{% enddetails %}
 
+
+<br/>
+<!-- #### Heidke Skill Score (HSS) -->
+{% details Heidke Skill Score (HSS) %}
+<br/>
 Evaluates the accuracy of forecasts relative to random chance, considering the number of correct predictions.
 
 $$
@@ -145,9 +159,11 @@ $$
 $$
 
 HSS is used to evaluate the overall skill of the model compared to random chance, providing a balanced measure of accuracy.
-
-#### Continuous Ranked Probability Score (CRPS)
-
+{% enddetails %}
+<br/>
+<!-- #### Continuous Ranked Probability Score (CRPS) -->
+{% details Continuous Ranked Probability Score (CRPS) %}
+<br/>
 Measures the accuracy of probabilistic forecasts by comparing the predicted cumulative distribution function (CDF) to the observed outcome.
 
 $$
@@ -157,9 +173,12 @@ $$
 where $$F(x)$$ is the CDF of the forecasted distribution at value $$x$$, and $$\mathbf{1}(x \geq y)$$ is the indicator function that equals 1 if $$x \geq y$$ and 0 otherwise.
 
 CRPS evaluates the probabilistic predictions, ensuring that the predicted distributions align well with the actual observed values.
+{% enddetails %}
 
-<!-- #### Structural Similarity Index Measure (SSIM)
-
+<!-- #### Structural Similarity Index Measure (SSIM) -->
+<br/>
+{% details Structural Similarity Index Measure (SSIM) %}
+<br/>
 Measures the perceived quality of the predictions compared to the ground truth, considering luminance, contrast, and structure.
 
 SSIM is calculated using a sliding window approach over the images, typically involving:
@@ -170,7 +189,9 @@ $$
 
 where $$\mu_x$$ and $$\mu_y$$ are the means of the two images $$x$$ and $$y$$, $$\sigma_x^2$$ and $$\sigma_y^2$$ are the variances, $$\sigma_{xy}$$ is the covariance, and $$c_1$$ and $$c_2$$ are constants to stabilize the division.
 
-SSIM is used to assess the visual similarity between predicted precipitation patterns and the actual observations, providing a measure of structural accuracy. -->
+SSIM is used to assess the visual similarity between predicted precipitation patterns and the actual observations, providing a measure of structural accuracy. 
+{% enddetails %}
+<br/>
 
 ## **CasCast Model**
 
@@ -186,6 +207,9 @@ It is structured into two main components; a deterministic model and a probabili
     </div>
 </div>
 
+<div class="caption">
+    CasCast Model Design
+</div>
 
 ### Deterministic Model
 
@@ -202,6 +226,9 @@ Seen here is the deterministic part of the model architecture.
         {% include figure.liquid loading="eager" path="assets/img/deterministic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+<div class="caption">
+    CasCast Deterministic Component Architecture
+</div>
 
 
 ### Probabilistic Model
@@ -217,6 +244,9 @@ Seen below is the probabilistic part of the model architecture.
         {% include figure.liquid loading="eager" path="assets/img/probabilistic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+<div class="caption">
+    CasCast Probabilistic Component Architecture
+</div>
 
 ### Overall Architecture
 
@@ -224,6 +254,9 @@ Seen below is the probabilistic part of the model architecture.
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/overall_architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
+</div>
+<div class="caption">
+    CasCast Architecture
 </div>
 
 As you can see here the model has 2 parts a deterministic and probabilistic part (shown on the left side).
@@ -272,6 +305,9 @@ The results of these comparative tests can be seen below.
         {% include figure.liquid loading="eager" path="assets/img/cascast_results_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+<div class="caption">
+    Comparative Results between multiple models using multiple datasets
+</div>
 
 ### Visual Comparisons
 
@@ -285,6 +321,9 @@ Some output image comparisons can be seen below.
         {% include figure.liquid loading="eager" path="assets/img/cascast_results_2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+<div class="caption">
+    Sample Model Output Image
+</div>
 
 The animation below shows an important distinction between CasCast and other models. As can be seen below CasCast is the model most able to predict the ground truth. 
 
@@ -293,7 +332,9 @@ The clear advantage of CasCast is that it is the only model that it able to dete
 <div class="col-sm mt-3 mt-md-0">
     {% include video.liquid path="assets/img/high_precip.mp4" class="img-fluid rounded z-depth-1" controls=true autoplay=true %}
 </div>
-
+<div class="caption">
+    Video Comparing Resutls using Different Models
+</div>
 ### Computational Efficiency
 
 Despite the high-resolution outputs, CasCast efficiently manages computational resources, making it suitable for real-time operational use. This efficiency is very important for practical deployment in meteorological stations and emergency management systems where time is essential when producing predictions.
@@ -337,6 +378,7 @@ So, what should you remember from this paper?
 * [CasCast: Skillful High-resolution Precipitation Nowcasting via Cascaded Modelling](https://arxiv.org/abs/2402.04290)
 * [Ho, J., Jain, A., and Abbeel, P. Denoising diffusion probabilistic models. Advances in neural information processing systems, 33:6840–6851, 2020.](https://arxiv.org/pdf/2006.11239)
 * Chen, & Zhang, Chunze & Liu, Jingtian & Zeng,. (2019). Generative Adversarial Networks Capabilities for Super-Resolution Reconstruction of Weather Radar Echo Images. Atmosphere. 10. 555. [10.3390/atmos10090555](https://www.researchgate.net/publication/335862244_Generative_Adversarial_Networks_Capabilities_for_Super-Resolution_Reconstruction_of_Weather_Radar_Echo_Images)
+* All images, tables and figures in this post can be found in the references above.
 
 
 <!-- 

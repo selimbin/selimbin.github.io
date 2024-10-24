@@ -22,8 +22,10 @@
           "url": "https://www.ipa.fraunhofer.de/",
           "startDate": "2024-02-01",
           "endDate": "Present",
-          "summary": "Focused on safe human-robot collaboration using machine learning.",
-          "highlights": ["Generated synthetic datasets using Omniverse to train LLM models for warehouse safety."]
+          "summary": "Work focused on Safe Human-Robot Collaboration using machine learning.",
+          "highlights": ["Worked on generating synthetic datasets using omniverse in order to train Machine Learning models with a focus on safety in warehouses.",
+          "Finetuned YOLOX on multiple datasets using the synthetic data and analysing the results to analyze the sim-to-real gap.",
+          "Developed an Isaac Sim extension that allows user to generated synthetic datasets in warehouses, custom scenes and with the possibility to include digital twins. An asset library was designed and added in order to allow users to tailor the dataset generation to their needs."]
         },
         {
           "name": "HYVE Technology Consulting",

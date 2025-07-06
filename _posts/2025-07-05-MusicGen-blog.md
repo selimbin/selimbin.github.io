@@ -240,6 +240,85 @@ While improved, AudioLDM still underperforms compared to MusicGen, especially in
 
 {% endtabs %}
 
+### 🌍 Cultural Generalizability: Unclean Vocal Inputs
+
+To evaluate how well the models generalize across **languages**, **accents**, and **noisy vocal inputs**, we tested on vocal tracks from different cultural backgrounds using known songs in **Arabic**, **French**, **Egyptian Arabic**, and **English**.
+
+Each case uses the original unclean vocals and generates instrumental output via the fine-tuned models.
+
+{% tabs cultural-generalizability %}
+
+{% tab cultural-generalizability Arabic — كفّك إنتَ %}
+
+**Culture:** Arabic  
+**Song:** *Kefak enta (كفّك إنتَ)*  
+
+**Input Vocal:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_arabic_input.wav" type="audio/wav">
+</audio>
+
+**Generated Instrumental Output:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_arabic_output.wav" type="audio/wav">
+</audio>
+
+{% endtab %}
+
+{% tab cultural-generalizability French — La Vie en Rose %}
+
+**Culture:** French  
+**Song:** *La Vie en Rose — Édith Piaf*  
+
+**Input Vocal:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_french_input.wav" type="audio/wav">
+</audio>
+
+**Generated Instrumental Output:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_french_output.wav" type="audio/wav">
+</audio>
+
+{% endtab %}
+
+{% tab cultural-generalizability Egyptian — CairoKee %}
+
+**Culture:** Egyptian Arabic  
+**Song:** *Cairokee – James Dean*  
+
+**Input Vocal:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_egypt_input.wav" type="audio/wav">
+</audio>
+
+**Generated Instrumental Output:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_egypt_output.wav" type="audio/wav">
+</audio>
+
+{% endtab %}
+
+{% tab cultural-generalizability English — Sweet Caroline %}
+
+**Culture:** English  
+**Song:** *Sweet Caroline*  
+
+**Input Vocal:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_english_input.wav" type="audio/wav">
+</audio>
+
+**Generated Instrumental Output:**  
+<audio controls style="width: 100%;">
+  <source src="/assets/audio/culture_english_output.wav" type="audio/wav">
+</audio>
+
+{% endtab %}
+
+{% endtabs %}
+
+
 
 ## **Conclusion**
 

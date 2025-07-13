@@ -142,21 +142,21 @@ While improved, AudioLDM still underperforms compared to MusicGen, especially in
 {% tab test-cases Test 1: Pop %}
 
 **Input Vocal**  
-<audio controls src="/assets/audio/test1_input.wav"></audio>  
+<audio controls src="/assets/audio/test1_input_2.wav"></audio>  
 
 **Ground Truth Instrumental**  
-<audio controls src="/assets/audio/test1_gt.wav"></audio>  
+<audio controls src="/assets/audio/test1_gt_2.wav"></audio>  
 
 **Genre Prompt:** `Pop`  
 
 **MusicGen Pretrained Output**  
-<audio controls src="/assets/audio/test1_pretrained.wav"></audio>  
+<audio controls src="/assets/audio/test1_pretrained_2.wav"></audio>  
 
 **MusicGen Fine-tuned Output**  
-<audio controls src="/assets/audio/test1_musicgen_ft.wav"></audio>  
+<audio controls src="/assets/audio/test1_musicgen_ft_2.wav"></audio>  
 
 **AudioLDM Fine-tuned Output**  
-<audio controls src="/assets/audio/test1_audioldm_ft.wav"></audio>  
+<audio controls src="/assets/audio/test1_audioldm_ft_2.wav"></audio>  
 
 {% endtab %}
 
@@ -318,6 +318,85 @@ Each case uses the original unclean vocals and generates instrumental output via
 
 {% endtabs %}
 
+## 🔍 Evaluation Results
+
+We conducted a comprehensive evaluation of our models using both **qualitative** and **quantitative** methods. The goal was to compare the performance of our fine-tuned models—**MusicGen Fine-tuned** and **AudioLDM Fine-tuned**—against the **pretrained MusicGen** baseline in generating instrumental music from vocal input.
+
+---
+
+### Qualitative Evaluation: User Listening Survey
+
+To assess perceptual quality and alignment, we conducted a user study with **10 participants**, each comparing outputs from all three models across **4 different songs**. Participants answered **12 questions** covering:
+
+* Vocal alignment
+* Genre fit
+* Overall audio quality
+
+
+#### Win Rate Comparison (Per Question Basis)
+
+| Model               | Win Rate (%) |
+| ------------------- | ------------ |
+| MusicGen Fine-tuned | **58.57%**   |
+| MusicGen Pretrained | 43.33%       |
+| AudioLDM Fine-tuned | 40.00%       |
+
+> ℹ️ While MusicGen Fine-tuned led in preference, the relatively close win rates highlight the complexity of modeling user expectations and stylistic alignment in music generation.
+
+#### 📊 Genre Preference Bar Chart (Simplified)
+
+Across four test tracks, participants selected preferred outputs based on genre fit:
+
+```
+Track   | MusicGen Fine-tuned | AudioLDM Fine-tuned
+--------|----------------------|---------------------
+Test 1  | 7 votes              | 3 votes
+Test 2  | 5 votes              | 5 votes
+Test 3  | 5 votes              | 5 votes
+Test 4  | 5 votes              | 5 votes
+```
+
+🎵 Interpretation: While MusicGen was generally preferred for melodic coherence, both models showed similar strength in capturing genre cues.
+
+---
+
+### Quantitative Evaluation
+
+We used two established metrics to evaluate realism and prompt consistency:
+
+#### CLAP Score (Text-Audio Alignment)
+
+CLAP (Contrastive Language-Audio Pretraining) measures similarity between the generated audio and the text prompt.
+
+| Model               | CLAP Score ↑ |
+| ------------------- | ------------ |
+| MusicGen Fine-tuned | **0.180**    |
+| MusicGen Pretrained | **0.180**    |
+| AudioLDM Fine-tuned | 0.117        |
+
+**Higher is better.** MusicGen clearly excels at maintaining alignment with semantic prompts, while AudioLDM showed weaker consistency, despite its improvements from multi-modal fine-tuning.
+
+#### Fréchet Audio Distance (FAD)
+
+FAD assesses the realism of generated audio by comparing the statistical distribution of embeddings against real instrumentals.
+
+| Model               | FAD Score ↓ |
+| ------------------- | ----------- |
+| MusicGen Pretrained | **10.64**   |
+| MusicGen Fine-tuned | 10.70       |
+| AudioLDM Fine-tuned | **9.48**    |
+
+**Lower is better.** Interestingly, AudioLDM Fine-tuned achieved the lowest FAD score, indicating that it generates more acoustically realistic audio—even if semantically weaker. This suggests it captures low-level audio features well.
+
+---
+
+### Summary of Findings
+
+* **MusicGen Fine-tuned** was preferred in qualitative tests and matched baselines in CLAP score.
+* **AudioLDM Fine-tuned** produced more realistic audio per FAD but lacked in semantic alignment.
+* Combining **voice + text conditioning** yields stronger results than using audio-only inputs.
+* While MusicGen appears better suited for structured, genre-aware music generation, AudioLDM benefits from its latent-domain realism and could be enhanced further with architectural tuning.
+
 
 
 ## **Conclusion**
@@ -338,7 +417,7 @@ This work proposes a **voice-guided music generation** framework by extending tw
 
 - Larger datasets with studio-quality separation
 - Conditioning on **chord progressions**, **lyrics**, or **emotions**
-- Real-time applications in **DAWs**, music apps, or web tools
+- Real-time applications in music apps, or web tools
 
 ## **References**
 
